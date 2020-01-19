@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  heimdall:
+    image: linuxserver/heimdall
+    container_name: heimdall
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - TZ=Europe/Berlin
+    volumes:
+      - ${USER_HOME}/heimdall/:/config
+    ports:
+      - 82:80
+    deploy:
+      restart_policy:
+        condition: none
+        delay: 5s
+        max_attempts: 3
+        window: 120s
